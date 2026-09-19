@@ -1,0 +1,27 @@
+Resumen de modificaciones realizadas
+
+Modificación 1 – Contador.java
+Se agregaron los atributos rachaActual y mejorRacha para almacenar las interpretaciones correctas consecutivas. En incrementarCorrectas() se incrementa la racha actual y se actualiza la mejor racha cuando corresponde. En incrementarIncorrectas() se reinicia la racha actual. También se agregaron los métodos getRachaActual() y getMejorRacha() para consultar estos valores sin acceder directamente a los atributos.
+
+Modificación 2 – ControlNombres.java
+Se agregaron los métodos getRachaActual() y getMejorRacha() para permitir que otras clases del modelo consulten los nuevos valores almacenados en Contador. No se agregó lógica de cálculo de rachas en esta clase, ya que dicha responsabilidad permanece encapsulada en Contador.
+
+Modificación 3 – IConsultaModelo.java
+Se agregaron los métodos getRachaActual() y getMejorRacha() a la interfaz de consulta del modelo. Esto permite que la nueva vista acceda a la información de rachas sin depender del controlador ni acceder directamente a las clases internas del modelo.
+
+Modificación 4 – FachadaModeloNombres.java
+Se implementaron los métodos getRachaActual() y getMejorRacha() definidos en IConsultaModelo. La fachada delega estas consultas a ControlNombres, manteniendo ocultas las clases internas del modelo y ofreciendo a las vistas un único punto de acceso a la información.
+
+Modificación 5 – VistaRacha.java
+Se creó una tercera vista llamada VistaRacha, basada en la estructura utilizada por VistaIntentos. La clase implementa Observador, mantiene una referencia a IConsultaModelo y muestra únicamente rachaActual y mejorRacha. La vista no realiza cálculos ni determina si una interpretación es correcta; únicamente presenta información proporcionada por el modelo.
+
+Modificación 6 – Ensamblador.java
+Se creó una instancia de VistaRacha, se le proporcionó acceso al modelo mediante setModelo(), se registró como observadora mediante agregarObservador() y finalmente se hizo visible. No fue necesario modificar el controlador ni las vistas existentes, ya que el patrón Observer permite incorporar nuevos observadores sin alterar los componentes previamente registrados.
+
+Pruebas realizadas
+
+Prueba de interrupción de racha
+Después de realizar tres interpretaciones correctas consecutivas, se ingresó un nombre con formato inválido. La aplicación incrementó el contador de fallidos, reinició rachaActual a 0 y conservó mejorRacha en 3. Esto confirma que el estado de las rachas se administra correctamente en el modelo y que VistaRacha refleja los cambios mediante Observer.
+
+Prueba de reinicio de nueva racha
+Después de interrumpir una racha de tres aciertos con una interpretación incorrecta, se procesó nuevamente un nombre válido. La rachaActual comenzó nuevamente en 1, mientras que mejorRacha permaneció en 3, confirmando que el récord histórico no se pierde al iniciar una nueva racha.
