@@ -141,12 +141,12 @@ public class ControlNombres {
         return contador.getIncorrectas();
     }
 
-    // Permite consultar la racha actual almacenada en el contador.
+    //Obtenemos la racha actual desde el contador
     public int getRachaActual() {
         return contador.getRachaActual();
     }
 
-    // Permite consultar la mejor racha almacenada en el contador.
+    //Obtenemos la mejor racha desde el contador
     public int getMejorRacha() {
         return contador.getMejorRacha();
     }

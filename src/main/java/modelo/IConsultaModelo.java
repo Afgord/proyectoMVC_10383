@@ -16,10 +16,10 @@ public interface IConsultaModelo {
 
     int getIncorrectas();
 
-    // Permite consultar la racha actual de interpretaciones correctas.
+    //Consultamos la racha actual
     int getRachaActual();
 
-    // Permite consultar la mejor racha alcanzada.
+    //Consultamos la mejor racha alcanzada
     int getMejorRacha();
 
 }

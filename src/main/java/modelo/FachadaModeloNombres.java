@@ -47,11 +47,13 @@ public class FachadaModeloNombres extends SujetoObservado
     }
 
     @Override
+    //Obtenemos la racha actual desde ControlNombres
     public int getRachaActual() {
         return control.getRachaActual();
     }
 
     @Override
+    //Obtenemos la mejor racha desde ControlNombres
     public int getMejorRacha() {
         return control.getMejorRacha();
     }

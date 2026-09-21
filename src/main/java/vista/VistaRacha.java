@@ -13,6 +13,9 @@ public class VistaRacha extends JFrame implements Observador {
     private JLabel lblRachaActual;
     private JLabel lblMejorRacha;
 
+    //Agregamos una barra de progreso para que la racha sea más visual
+    private JProgressBar barraRacha;
+
     public VistaRacha() {
 
         setTitle("Racha de aciertos");
@@ -28,7 +31,7 @@ public class VistaRacha extends JFrame implements Observador {
     private void crearComponentes() {
 
         JPanel panel = new JPanel(
-                new GridLayout(2, 2, 10, 10)
+                new GridLayout(3, 2, 10, 10)
         );
 
         panel.setBorder(
@@ -40,11 +43,23 @@ public class VistaRacha extends JFrame implements Observador {
         lblRachaActual = new JLabel("0");
         lblMejorRacha = new JLabel("0");
 
+        // Creamos el componente barra de progreso para la racha
+        barraRacha = new JProgressBar();
+        barraRacha.setMinimum(0);
+        barraRacha.setMaximum(1);
+        barraRacha.setValue(0);
+        barraRacha.setStringPainted(true);
+        barraRacha.setString("0 / 0");
+
         panel.add(new JLabel("Racha actual:"));
         panel.add(lblRachaActual);
 
         panel.add(new JLabel("Mejor racha:"));
         panel.add(lblMejorRacha);
+
+        // Agregamos la barra al panel
+        panel.add(new JLabel("Progreso de racha:"));
+        panel.add(barraRacha);
 
         add(panel);
     }
@@ -64,12 +79,31 @@ public class VistaRacha extends JFrame implements Observador {
     @Override
     public void actualizar() {
 
+        int rachaActual = modelo.getRachaActual();
+        int mejorRacha = modelo.getMejorRacha();
+
         lblRachaActual.setText(
-                String.valueOf(modelo.getRachaActual())
+                String.valueOf(rachaActual)
         );
 
         lblMejorRacha.setText(
-                String.valueOf(modelo.getMejorRacha())
+                String.valueOf(mejorRacha)
+        );
+
+        /*
+         * La barra solo representa visualmente los datos
+         * que ya vienen del modelo.
+         */
+        barraRacha.setMaximum(
+                Math.max(mejorRacha, 1)
+        );
+
+        barraRacha.setValue(
+                rachaActual
+        );
+
+        barraRacha.setString(
+                rachaActual + " / " + mejorRacha
         );
     }
 }

@@ -18,6 +18,9 @@ Se creó una tercera vista llamada VistaRacha, basada en la estructura utilizada
 Modificación 6 – Ensamblador.java
 Se creó una instancia de VistaRacha, se le proporcionó acceso al modelo mediante setModelo(), se registró como observadora mediante agregarObservador() y finalmente se hizo visible. No fue necesario modificar el controlador ni las vistas existentes, ya que el patrón Observer permite incorporar nuevos observadores sin alterar los componentes previamente registrados.
 
+Modificación 7 – Elemento gráfico en VistaRacha.java
+Se agregó una barra de progreso para representar gráficamente la relación entre la racha actual y la mejor racha alcanzada. Esta modificación afecta únicamente la presentación de la información y no altera la lógica del modelo ni el funcionamiento del patrón Observer.
+
 Pruebas realizadas
 
 Prueba de interrupción de racha
@@ -25,3 +28,7 @@ Después de realizar tres interpretaciones correctas consecutivas, se ingresó u
 
 Prueba de reinicio de nueva racha
 Después de interrumpir una racha de tres aciertos con una interpretación incorrecta, se procesó nuevamente un nombre válido. La rachaActual comenzó nuevamente en 1, mientras que mejorRacha permaneció en 3, confirmando que el récord histórico no se pierde al iniciar una nueva racha.
+
+Prueba del elemento gráfico
+Después de alcanzar una mejor racha de 3, se ingresó un nombre inválido y posteriormente uno válido. La barra de progreso pasó de 3/3 a 0/3 y después a 1/3, reflejando correctamente la racha actual respecto a la mejor racha registrada.
+

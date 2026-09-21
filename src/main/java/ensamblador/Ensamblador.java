@@ -30,6 +30,7 @@ public class Ensamblador {
         VistaIntentos vistaIntentos =
                 new VistaIntentos();
 
+        //Creamos la nueva vista VistaRacha para mostrar las rachas
         VistaRacha vistaRacha =
                 new VistaRacha();
 
@@ -47,11 +48,15 @@ public class Ensamblador {
         // Vistas -> Modelo
         vistaNombres.setModelo(modelo);
         vistaIntentos.setModelo(modelo);
+
+        //La nueva vista consulta los datos directamente del modelo
         vistaRacha.setModelo(modelo);
 
         // Modelo -> Observadores
         modelo.agregarObservador(vistaNombres);
         modelo.agregarObservador(vistaIntentos);
+        
+        //La registramos para que se actualice cuando cambie el modelo
         modelo.agregarObservador(vistaRacha);
 
 
@@ -61,6 +66,7 @@ public class Ensamblador {
 
         vistaNombres.setVisible(true);
         vistaIntentos.setVisible(true);
+        //Mostramos la nueva vista VistaRacha
         vistaRacha.setVisible(true);
     }
 }

@@ -13,19 +13,20 @@ public class Contador {
     private int correctas;
     private int incorrectas;
 
-    /* Para la asignación vamos a agregar la racha actual y la mejor racha
-    * a la hora de trabajar con los nombres y apellidos
-    */
-    // Número de interpretaciones correctas consecutivas.
+    /* Para esta asignación agregamos la racha actual y la mejor racha
+     * para llevar el seguimiento de los aciertos consecutivos
+     */
+    //La racha que llevamos actualmente
     private int rachaActual;
 
-    // Mayor cantidad de interpretaciones correctas consecutivas alcanzada.
+    //La mejor racha que se ha conseguido
     private int mejorRacha;
 
     public Contador() {
         correctas = 0;
         incorrectas = 0;
-        //Agregamos las rachas al constructor
+
+        //Inicializamos las dos rachas en cero
         rachaActual = 0;
         mejorRacha = 0;
     }
@@ -33,10 +34,10 @@ public class Contador {
     public void incrementarCorrectas() {
         correctas++;
 
-        //Incrementamos la rachaActual
+        //Si fue correcto, también aumentamos la racha
         rachaActual++;
 
-        // Actualizamos la mejor racha si la racha actual la supera.
+        //Si la racha actual supera a la mejor, guardamos el nuevo récord
         if (rachaActual > mejorRacha) {
             mejorRacha = rachaActual;
         }
@@ -45,7 +46,7 @@ public class Contador {
     public void incrementarIncorrectas() {
         incorrectas++;
 
-        // Reiniciamos la racha actual cuando la interpretación es incorrecta.
+        //Si falla la interpretación, se pierde la racha actual
         rachaActual = 0;
     }
 
@@ -57,7 +58,7 @@ public class Contador {
         return incorrectas;
     }
 
-    //Se agregan los getters para rachaActual y mejorRacha
+    //Agregamos los getters para poder consultar las rachas
     public int getRachaActual() {
         return rachaActual;
     }
